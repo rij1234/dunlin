@@ -14,7 +14,7 @@ public class Main {
 
 
 
-        // if this works, yay
+        // if this works, yay!
 
         for(Goal goal : year.getGoals()) {
             System.out.println(goal);
