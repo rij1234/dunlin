@@ -35,8 +35,10 @@ public class Database {
     public void setupTables() {
         try {
             Statement s = c.createStatement();
-            s.executeUpdate("CREATE TABLE IF NOT EXISTS goals (goal TEXT, description TEXT, completion TEXT)"); // edit
-            s.executeUpdate("CREATE TABLE IF NOT EXISTS goals (goal TEXT, description TEXT, completion TEXT)"); // edit
+            s.executeUpdate("CREATE TABLE IF NOT EXISTS Days (month TINYINT(12), day TINYINT(31), " +
+                    "journalEntry TEXT, year INT)");
+            s.executeUpdate("CREATE TABLE IF NOT EXISTS Goals (name TEXT, achieved BOOLEAN, monthAchieved INT, " +
+                    "dayAchieved INT, yearAchieved, onePointRequirement TEXT, twoPointRequirement TEXT, year INT)");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

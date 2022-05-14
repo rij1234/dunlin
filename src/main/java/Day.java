@@ -3,8 +3,8 @@ import java.util.*;
 class Day {
     private int mood = 0;
     private int productivity = 0;
-    private int month = 0;
-    private int day = 0;
+    private final int month;
+    private final int day;
     private Map<String, Integer> goalTotals;
 
     private static final int MAX_JOURNAL_ENTRY_LENGTH = 2000;
