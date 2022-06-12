@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.UUID;
 
 public class Goal {
     private String goal;
@@ -7,13 +9,33 @@ public class Goal {
     private int[] dateAchieved;
     private String onePointRequirement;
     private String twoPointRequirement;
+    private final String id;
 
-    public Goal(String mainGoal, String onePointRequirement, String twoPointRequirement) {
+    public Goal(String mainGoal, String onePointRequirement, String twoPointRequirement, String id) {
         goal = mainGoal;
         dailySteps = new ArrayList<String>();
         achieved = false;
         this.onePointRequirement = onePointRequirement;
         this.twoPointRequirement = twoPointRequirement;
+        this.id = id;
+    }
+
+    public Goal(String mainGoal, String onePointRequirement, String twoPointRequirement, String id, boolean achieved, int[] dateAchieved) {
+        goal = mainGoal;
+        dailySteps = new ArrayList<String>();
+        achieved = false;
+        this.onePointRequirement = onePointRequirement;
+        this.twoPointRequirement = twoPointRequirement;
+        this.id = id;
+        this.achieved = achieved;
+        this.dateAchieved = dateAchieved;
+    }
+
+    public static String getNewId() {
+        String uniqueID = UUID.randomUUID().toString();
+
+        // return (int) (Math.random() * 1000000);
+        return uniqueID;
     }
 
     public String[] getDailySteps(){
@@ -42,11 +64,14 @@ public class Goal {
     public boolean hasBeenAchieved(){ return achieved; }
     public void setNotAchieved(){ achieved = false; dateAchieved = null; }
     public void setAchieved(int[] date){ achieved = true; dateAchieved = date; }
+    public int[] getDateAchieved(){ return dateAchieved; }
 
     public String getOnePointRequirement(){ return onePointRequirement; }
     public String getTwoPointRequirement(){ return twoPointRequirement; }
     public void getOnePointRequirement(String newRequirement){ onePointRequirement = newRequirement; }
     public void getTwoPointRequirement(String newRequirement){ twoPointRequirement = newRequirement; }
+
+    public String getId(){ return id; }
 
     public String toString(){
         return getGoal() + "{}{}{}" + getOnePointRequirement() + "{}{}{}" + getTwoPointRequirement();
