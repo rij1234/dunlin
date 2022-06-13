@@ -1,5 +1,6 @@
 import java.sql.*;
 
+// This class manages the sqlite database used to store the data
 public class Database {
     private String filename;
     private Connection c;
@@ -65,13 +66,28 @@ public class Database {
 
     }
 
+    // Removes a goal from the database from its id
+    public void removeGoal(String id) {
+        try {
+            Statement s = c.createStatement();
+            s.executeUpdate("DELETE FROM Goals WHERE id = '" + id + "'");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Removes the goal from the database based on its goal object (just calls removeGoal(String id))
+    public void removeGoal(Goal goal) {
+        removeGoal(goal.getId());
+    }
+
     // Fetches all goals from the database and returns them in a Goal[] array
     public Goal[] getGoals(){
         Goal[] goals = new Goal[0];
         try {
             Statement s = c.createStatement();
             ResultSet rs = s.executeQuery("SELECT * FROM Goals");
-            goals = new Goal[4];
+            goals = new Goal[8];
             int i = 0;
             while(rs.next()) {
                 String name = rs.getString("name");

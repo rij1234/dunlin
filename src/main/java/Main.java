@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 public class Main {
     public static void main(String[] args) {
         LocalDateTime now = LocalDateTime.now();
-        Year year = new Year(2022);
         Day today = new Day(now.getMonthValue(), now.getDayOfMonth());
 
         Goal goal1 = new Goal("Get USACO silver", "Study 1 Hour", "Study 2+ hours", Goal.getNewId());
@@ -28,18 +27,18 @@ public class Main {
 
         Database database = new Database("main.db");
 
-//        database.addGoal(goal1);
-//        database.addGoal(goal2);
-//        database.addGoal(goal3);
-//        database.addGoal(goal4);
-
-        year.addDay(today);
+        for(Goal goal : goals) {
+            // database.addGoal(goal);
+        }
 
         for(Goal goal : database.getGoals()){
             System.out.println(goal);
+            // database.removeGoal(goal);
         }
 
         GUI gui = new GUI();
+
+
 
 
 
